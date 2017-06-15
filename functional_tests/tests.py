@@ -1,7 +1,7 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.keys import Keys
 import time
 
 MAX_WAIT = 10
@@ -22,7 +22,7 @@ class NewVisitorTest(LiveServerTestCase):
                 rows = table.find_elements_by_tag_name('tr')
                 self.assertIn(row_text, [row.text for row in rows])
                 return
-            except(AssertionError, WebDriverException) as e:
+            except (AssertionError, WebDriverException) as e:
                 if time.time() - start_time > MAX_WAIT:
                     raise e
                 time.sleep(0.5)
@@ -66,8 +66,8 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Satisfied, she goes back to sleep
 
-    def test_multiple_user_can_start_lists_at_diffrent_urls(self):
-        # Edith start a new todo list
+    def test_multiple_users_can_start_lists_at_different_urls(self):
+        # Edith starts a new to-do list
         self.browser.get(self.live_server_url)
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy peacock feathers')
@@ -80,12 +80,12 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Now a new user, Francis, comes along to the site.
 
-        ## We use a ne browser session to make sure that no information
+        ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from cookies etc
         self.browser.quit()
         self.browser = webdriver.Chrome()
 
-        # Francis visits the home page, There is no sign of Edith's
+        # Francis visits the home page.  There is no sign of Edith's
         # list
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
