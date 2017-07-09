@@ -24,7 +24,10 @@ SECRET_KEY = '9=j-$q-(a_==asue+!+)fvz1zlh#2(p!b0be63^e&s2*8%y^j='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'ec2-13-124-10-55.ap-northeast-2.compute.amazonaws.com',
+    'goat.dramabeer.com',
+]
 
 # Application definition
 
