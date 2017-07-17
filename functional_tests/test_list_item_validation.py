@@ -6,7 +6,7 @@ class ItemValidationTest(FunctionalTest):
     def test_cannot_add_empty_list_items(self):
         # Edith goes to the home page and accidentally tries to submit
         # an empty list item. She hits Enter on the empty input box
-        self.browser.get(self.server_url)
+        self.browser.get(self.live_server_url)
         self.browser.find_element_by_id('id_new_item').send_keys(Keys.ENTER)
 
         # The home page refreshes, and there is an error message saying
