@@ -27,6 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'ec2-13-124-10-55.ap-northeast-2.compute.amazonaws.com',
     'goat.dramabeer.com',
+    'localhost',
 ]
 
 # Application definition
@@ -40,6 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'lists.apps.ListsConfig',
+    'accounts',
+]
+
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = [
+    'accounts.authentication.PasswordlessAuthenticationBackend',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +125,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
+# Email Setting
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'studysshong@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_PORT = '587'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
